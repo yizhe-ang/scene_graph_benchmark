@@ -28,7 +28,9 @@ conda install ipython h5py nltk joblib jupyter pandas scipy
 # maskrcnn_benchmark and coco api dependencies
 pip install ninja yacs>=0.1.8 cython matplotlib tqdm opencv-python numpy>=1.19.5
 
-conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10.1 -c pytorch
+conda install pytorch==1.7.1 torchaudio==0.7.2 cudatoolkit=10.1 -c pytorch
+# install from pip instead; conda installs torchvision==0.8.0a0
+pip install torchvision==0.8.2+cu101 -f https://download.pytorch.org/whl/torch_stable.html
 conda install -c conda-forge timm einops
 
 # install pycocotools
@@ -36,6 +38,9 @@ conda install -c conda-forge pycocotools
 
 # install cityscapesScripts
 python -m pip install cityscapesscripts
+
+# install GCC 5 or later
+conda install -c psi4 gcc-5
 
 # install Scene Graph Detection
 git clone https://github.com/microsoft/scene_graph_benchmark

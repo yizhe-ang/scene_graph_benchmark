@@ -1,6 +1,7 @@
 MODEL:
   META_ARCHITECTURE: "SceneParser"
-  WEIGHT: "models/vgvrd/vgnm_usefpTrue_objctx0_edgectx2/model_final.pth"
+  # WEIGHT: "models/vgvrd/vgnm_usefpTrue_objctx0_edgectx2/model_final.pth"
+  WEIGHT:
   USE_FREQ_PRIOR: False
   FREQ_PRIOR: "visualgenome/label_danfeiX_clipped.freq_prior.npy"
   RESNETS:

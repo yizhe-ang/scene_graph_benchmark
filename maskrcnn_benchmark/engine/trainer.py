@@ -1,5 +1,5 @@
 # Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
-# Copyright (c) 2021 Microsoft Corporation. Licensed under the MIT license. 
+# Copyright (c) 2021 Microsoft Corporation. Licensed under the MIT license.
 import datetime
 import logging
 import os
@@ -76,7 +76,24 @@ def do_train(
     for iteration, data_batch in enumerate(data_loader, start_iter):
 
         images, targets, image_ids, scales = data_batch[0], data_batch[1], data_batch[2], data_batch[3:]
-        
+        """Different depending on model
+
+        images: ImageList
+        targets: Tuple[BoxList]
+            - labels: (N_b,)
+            - relation_labels: (N_r, 3)
+                Each relationship has a tensor of [subject_id, object_id, rel_id]
+            - pred_labels: (N_b, N_b)
+                Relationship matrix, with [i, j] containing the rel id of obj i with obj j
+        """
+        # Print data batch info
+        print(images)
+        print(targets)
+        print(targets[1])
+        print(targets[1].extra_fields)
+        for k, v in targets[1].extra_fields.items():
+            print(f'{k}: {v.shape}')
+
         if any(len(target) < 1 for target in targets):
             logger.error(f"Iteration={iteration + 1} || Image Ids used for training {_} || targets Length={[len(target) for target in targets]}" )
             continue
@@ -87,6 +104,7 @@ def do_train(
         images = images.to(device)
         # targets = [target.to(device) for target in targets]
 
+        # FIXME Error occurs within here
         if cfg.SOLVER.USE_AMP:
             with autocast():
                 loss_dict = model(images, targets)

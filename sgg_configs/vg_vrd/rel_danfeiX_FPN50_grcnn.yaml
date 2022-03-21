@@ -1,6 +1,7 @@
 MODEL:
   META_ARCHITECTURE: "SceneParser"
-  WEIGHT: "models/vgvrd/vgnm_usefpTrue_objctx0_edgectx2/model_final.pth"
+  # WEIGHT: "models/vgvrd/vgnm_usefpTrue_objctx0_edgectx2/model_final.pth"
+  WEIGHT:
   USE_FREQ_PRIOR: False
   FREQ_PRIOR: "visualgenome/label_danfeiX_clipped.freq_prior.npy"
   RESNETS:
@@ -57,7 +58,7 @@ MODEL:
     TRIPLETS_PER_IMG: 100
     POSTPROCESS_METHOD: 'constrained' # previously it's unconstrained
     GRCNN_FEATURE_UPDATE_STEP: 2
-    GRCNN_SCORE_UPDATE_STEP: 2       
+    GRCNN_SCORE_UPDATE_STEP: 2
 INPUT:
   MIN_SIZE_TRAIN: (600,)
   MAX_SIZE_TRAIN: 1000
